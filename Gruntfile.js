@@ -165,10 +165,11 @@ module.exports = function (grunt) {
             '<%= project.src %>/js/lib/TweenMax.min.js',
             '<%= project.src %>/js/lib/ScrollToPlugin.min.js',
             '<%= project.src %>/js/lib/jquery.scrollmagic.min.js',
-            '<%= project.src %>/js/lib/imagesloaded.pkgd.min.js',
-            '<%= project.src %>/js/lib/isotope.pkgd.min.js',
-            '<%= project.src %>/js/lib/transformicons.js',
+            // '<%= project.src %>/js/lib/imagesloaded.pkgd.min.js',
+            // '<%= project.src %>/js/lib/isotope.pkgd.min.js',
+            // '<%= project.src %>/js/lib/transformicons.js',
             '<%= project.src %>/js/lib/coffeeCompile.js'
+            // '<%= project.src %>/js/lib/Elevator.js'
           ]
         }
       }
@@ -344,7 +345,7 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('default', [
     'coffee:dev',
-    'sass:ebm',
+    // 'sass:ebm',
     'sass:dev',
     'bower:dev',
     // 'autoprefixer:dev',

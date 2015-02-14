@@ -1,0 +1,7 @@
+footer {
+	@include position(fixed, null 0 0 0);
+	width: 100%;
+	text-align: right;
+	// @extend .text-shadow;
+	padding: $container-fluid 0;
+}

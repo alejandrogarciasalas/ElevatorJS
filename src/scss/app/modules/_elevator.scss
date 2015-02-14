@@ -1,0 +1,174 @@
+#elevator,
+.elevator-control {
+	height: 100%;
+	@include flex-middle-center;
+}
+
+$elevator-height-control: 490px;
+#elevator {
+	@include position(fixed, 0 0 0 0);
+	width: 100%;
+	.elevator {
+		position: relative;
+		min-height: $elevator-height-control;
+		width: 540px;
+		background: $gray;
+		@include box-shadow-default;
+		.top {
+			background-color: white;
+			min-height: 28px;
+			text-align: center;
+			@include flex-middle-center;
+		}
+		.center {
+			@include calc(height, "#{$elevator-height-control - 28px}");
+		}
+		// .bottom {
+		// 	@include position(absolute, null 0 0 0);
+		// 	width: 100%;
+		// 	min-height: $elevator-height-control;
+		// 	background-color: $brand-primary;
+		// }
+	}
+}
+
+.elevator-doors {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	.left-door,
+	.right-door {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		width: 50%;
+		background-color: $gray-lighter;
+	}
+	.left-door {
+		left: 0;
+		border-right: 1px solid darken($gray-lighter, 3%);
+	}
+	.right-door {
+		right: 0;
+		border-left: 1px solid darken($gray-lighter, 3%);
+	}
+}
+
+#stories-indicators {
+	span {
+		display: inline-block;
+		padding: 0 3px;
+		&:hover,
+		&.active {
+			color: $brand-danger;
+		}
+	}
+}
+
+.elevator-control {
+	@include position(fixed, 0 7% 0 null);
+}
+#selected-stories {
+	background-color: $gray-lighter;
+	padding: 7px;
+}
+
+#elevator-control {
+		min-width: 25%;
+		width: 210px;
+		@include box-shadow-default;
+		ul {
+			min-height: 210px;
+			background: white;
+			@include list-unstyled;
+			@include clearfix;
+			li {
+				padding: 7px;
+				width: 50%;
+				a {
+					position: relative;
+					display: block;
+					padding-left: 18px;
+					&:before,
+					&:after {
+						position: absolute;
+						display: block;
+						content: "";
+						border-radius: 50%;
+					}
+					&:before {
+						width: 9px;
+						height: 9px;
+						background-color: $gray-lighter;
+						z-index: 30;
+						top: 5px;
+						left: 1px;
+					}
+					&:after {
+						width: 12px;
+						height: 12px;
+						background-color: $gray-light;
+						top: 4px;
+						left: 0;
+					}
+					&:hover,
+					&.active {
+						&:after {
+							background-color: $brand-info;
+						}
+						&:before {
+							background-color: $gray-light;
+						}
+					}
+				}
+			}
+		}
+		.left,
+		.right {
+			@extend .col-xs-6;
+		}
+	}
+
+#stories {
+	min-height: 100%;
+	height: 100%;
+	[id*="story-"] {
+		height: 100%;
+		@for $i from 1 through length($brand-colors-list) {
+			&:nth-child(#{$i}) {
+				background-color: #{nth($brand-colors-list, $i)};
+			}
+		}
+		@for $i from 1 through length($grayscale-list) {
+			&:nth-child(#{5+$i}) {
+				background-color: #{nth($grayscale-list, $i)};
+			}
+		}
+	}
+}
+
+// ELEVATOR EVENTS
+#elevator {
+	&.open-doors {
+		.elevator-doors {
+			.left-door{
+				@include transform(translateX(-100%));
+				@include transition(all 0.2s ease-in-out);
+			}
+			.right-door {
+				@include transform(translateX(100%));
+				@include transition(all 0.2s ease-in-out);
+			}
+		}
+	}
+	&.close-doors {
+		.elevator-doors {
+			.left-door,
+			.right-door {
+				@include transform(translateX(0));
+				@include transition(all 0.2s ease-in-out);
+			}
+		}
+	}
+}
